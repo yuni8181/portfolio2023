@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {margin: 0;padding: 0;}
+        body {height: 3000px;}
+
+        h1 {position: fixed;
+            z-index: 999;
+        left: 20px;
+    top: 20px;}
+       .box01{
+  width: 100%; height: 100vh;
+  /* border: 10px solid black; padding: 30px;  */
+
+  font-size: 200px; font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  color: transparent;
+ /* 글자색을 투명하게 처리 글자에 배경이미지를 넣기*/
+  -webkit-text-fill-color: transparent;
+  background-clip: text; 
+  -webkit-background-clip: text;
+
+  background-image: url(img/bg.jpg);
+  background-position: left top; 
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+
+  transition: 0.3s; 
+  box-sizing: border-box;
+  background-attachment: fixed;
+}
+
+
+
+.box02 {width: 100%;
+height: 100vh;
+border: 10px solid red; padding: 30px;
+position:relative;
+box-sizing: border-box;
+
+background-attachment: fixed;
+overflow: hidden;
+background-image: url(img/bg.jpg);
+  background-position: left top; 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+ 
+
+}
+.box02>p:nth-child(1) {width: 0%;
+height: 0%;
+background-color: transparent;
+border: 2px solid #000;
+
+
+position: absolute;
+left: 50%;
+bottom: 0;
+transform: translate(-50%);
+
+transition-property: width,height;
+transition-duration: 0.5s;
+
+
+
+
+  
+
+
+}
+
+.box02>p:nth-child(2){background-color: #000;
+width: 100%;
+height: 100%;
+position: absolute;
+left: 0;
+top: 0;
+left: 50%;
+bottom: 0;
+transform: translate(-50%);
+
+transition-property: width,height;
+transition-duration: 0.5s;}
+
+.box02.on{position: fixed;
+left: 0;
+top: 0;}
+/* .box01:hover{ background-position: right bottom; }  */
+    </style>
+
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+    $(document).ready(function(){
+        $(window).scroll(function(){
+            let wht = $('.box01').height()
+            let sc = $(this).scrollTop()
+            
+            let bht =$('.box01').height() 
+            $('h1').text(sc)
+            let sNum = (sc/wht)
+
+            let ss = (sc-wht)/10
+            $('h1').text(ss)
+
+            if(sc>=bht){
+                $('.box02').addClass('on')
+
+$('.box02>p').css({'width':ss+'%' ,'height':ss+'%'})
+
+
+
+
+
+
+
+            }else{
+
+                $('.box02').removeClass('on')
+            }
+
+        })
+
+    })
+</script>
+</head>
+<body>
+    <h1>00</h1>
+    <div class="box01">테스트박스</div>
+
+    <div class="box02">
+        <p></p>
+        <p></p>
+    </div>
+    
+</body>
+</html>
